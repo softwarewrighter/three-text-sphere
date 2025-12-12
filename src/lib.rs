@@ -8,7 +8,7 @@ use web_sys::window;
 type AnimationCallback = Rc<RefCell<Option<Closure<dyn FnMut(f64)>>>>;
 
 // Configuration constants (matching Godot reference)
-const TEXT_TO_DISPLAY: &str = "DEMO";
+const TEXT_TO_DISPLAY: &str = " [three-text-sphere] ";
 const ORBIT_RADIUS: f64 = 8.0;
 const ROTATION_SPEED: f64 = 0.4;
 const LETTER_SIZE: f64 = 3.0; // TextGeometry size parameter
