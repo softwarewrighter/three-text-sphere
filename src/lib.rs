@@ -4,12 +4,15 @@ use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 use web_sys::window;
 
+// Type alias for animation callback to reduce complexity
+type AnimationCallback = Rc<RefCell<Option<Closure<dyn FnMut(f64)>>>>;
+
 // Configuration constants (matching Godot reference)
 const TEXT_TO_DISPLAY: &str = "DEMO";
 const ORBIT_RADIUS: f64 = 8.0;
 const ROTATION_SPEED: f64 = 0.4;
-const LETTER_SIZE: f64 = 3.0;      // TextGeometry size parameter
-const LETTER_DEPTH: f64 = 0.15;    // Extrusion depth (thin)
+const LETTER_SIZE: f64 = 3.0; // TextGeometry size parameter
+const LETTER_DEPTH: f64 = 0.15; // Extrusion depth (thin)
 const SPHERE_RADIUS: f64 = 3.0;
 const SPHERE_COLOR: u32 = 0x3366CC; // RGB(0.2, 0.4, 0.8)
 
@@ -384,7 +387,7 @@ pub fn main() -> Result<(), JsValue> {
     let app_clone = app.clone();
     let last_time = Rc::new(RefCell::new(0.0));
 
-    let f: Rc<RefCell<Option<Closure<dyn FnMut(f64)>>>> = Rc::new(RefCell::new(None));
+    let f: AnimationCallback = Rc::new(RefCell::new(None));
     let g = f.clone();
 
     let win = window().ok_or("no window")?;
@@ -410,7 +413,8 @@ pub fn main() -> Result<(), JsValue> {
         app_clone.borrow().animate(delta);
 
         if let Some(w) = window() {
-            let _ = w.request_animation_frame(f.borrow().as_ref().unwrap().as_ref().unchecked_ref());
+            let _ =
+                w.request_animation_frame(f.borrow().as_ref().unwrap().as_ref().unchecked_ref());
         }
     }));
 
@@ -421,8 +425,16 @@ pub fn main() -> Result<(), JsValue> {
     let app_resize = app.clone();
     let resize_closure = Closure::<dyn FnMut()>::new(move || {
         if let Some(w) = window() {
-            let width = w.inner_width().ok().and_then(|v| v.as_f64()).unwrap_or(800.0);
-            let height = w.inner_height().ok().and_then(|v| v.as_f64()).unwrap_or(600.0);
+            let width = w
+                .inner_width()
+                .ok()
+                .and_then(|v| v.as_f64())
+                .unwrap_or(800.0);
+            let height = w
+                .inner_height()
+                .ok()
+                .and_then(|v| v.as_f64())
+                .unwrap_or(600.0);
             app_resize.borrow().resize(width, height);
         }
     });

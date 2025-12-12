@@ -2,6 +2,8 @@
 
 A Rust/WebAssembly application that renders 3D text orbiting around a sphere, using Yew and three.js. Inspired by the Godot implementation in [godot-text-sphere](../godot-text-sphere).
 
+![Screenshot](images/screenshot.png?ts=1734032357295)
+
 ## Features
 
 - 3D text characters orbiting a central sphere
@@ -51,13 +53,13 @@ Open http://localhost:1417 in your browser.
 ```
 three-text-sphere/
   Cargo.toml          # Rust dependencies
+  Trunk.toml          # Build configuration
+  index.html          # HTML shell with three.js
   src/
-    lib.rs            # WASM entry point
-    ...
-  static/
-    index.html        # HTML shell with three.js
-  dist/               # Build output
+    lib.rs            # WASM entry point and three.js bindings
+  dist/               # Build output (generated)
   docs/               # Documentation
+  images/             # Screenshots
 ```
 
 ## Configuration
