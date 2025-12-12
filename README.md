@@ -42,11 +42,19 @@ Open http://localhost:1417 in your browser.
 
 ## Documentation
 
+### Project Documentation
+
 - [Architecture](docs/architecture.md) - System design and technology stack
 - [PRD](docs/prd.md) - Product requirements document
 - [Design](docs/design.md) - Technical design details
 - [Plan](docs/plan.md) - Implementation plan and phases
 - [Status](docs/status.md) - Current project status
+
+### Development Guidelines
+
+- [AI Agent Instructions](docs/ai_agent_instructions.md) - Guidelines for AI coding agents
+- [Process](docs/process.md) - Development workflow and pre-commit process
+- [Tools](docs/tools.md) - Recommended development tools
 
 ## Project Structure
 
@@ -55,6 +63,8 @@ three-text-sphere/
   Cargo.toml          # Rust dependencies
   Trunk.toml          # Build configuration
   index.html          # HTML shell with three.js
+  LICENSE             # MIT License
+  COPYRIGHT           # Copyright notice
   src/
     lib.rs            # WASM entry point and three.js bindings
   dist/               # Build output (generated)
@@ -79,4 +89,6 @@ Based on the visual design of [godot-text-sphere](../godot-text-sphere), a Godot
 
 ## License
 
-MIT
+MIT - See [LICENSE](LICENSE) for details.
+
+Copyright (c) 2025 Michael A Wright
