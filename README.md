@@ -78,7 +78,7 @@ Default parameters (compile-time):
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
-| text | "DEMO" | Text to display |
+| text | "[three-text-sphere]" | Text to display |
 | radius | 8.0 | Orbit distance |
 | rotation_speed | 0.4 | rad/s |
 | sphere_radius | 3.0 | Central sphere size |
