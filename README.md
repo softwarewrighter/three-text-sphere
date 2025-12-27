@@ -2,9 +2,9 @@
 
 A Rust/WebAssembly application that renders 3D text orbiting around a sphere, using Yew and three.js. Inspired by the Godot implementation in [godot-text-sphere](https://github.com/softwarewrighter/godot-text-sphere).
 
-**[Live Demo](https://softwarewrighter.github.io/three-text-sphere/?ts=1735259090970)**
+**[Live Demo](https://softwarewrighter.github.io/three-text-sphere/?ts=1735236591903)**
 
-![Screenshot](images/screenshot.png?ts=1734033363716)
+![Screenshot](images/screenshot.png?ts=1735236591903)
 
 ## Features
 
