@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Text Sphere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            background: #000;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+<link rel="modulepreload" href="/three-text-sphere/three-text-sphere-6db8882530f0de85.js" crossorigin="anonymous" integrity="sha384-JEJXqeE8HPHelufge5DfFFu7RlS+r5dJjSSfzfSdjPqrUwQKikCnQA1bJsnlyUq3"><link rel="modulepreload" href="/three-text-sphere/snippets/three-text-sphere-9f514da47e4bb3a8/inline0.js" crossorigin="anonymous" integrity="sha384-d0Inb8wmyDHZkFpvrUUEQ2Jo5gvoOL2be4sadHuB6rLz62kdDjYG/d5GSTrmn8DI"><link rel="preload" href="/three-text-sphere/three-text-sphere-6db8882530f0de85_bg.wasm" crossorigin="anonymous" integrity="sha384-mqtQbB/3za9csyQ3x9fUiJ6GTW2LMa2142rrvGc3IbmWrH9pWk914tRH7YX3ib9+" as="fetch" type="application/wasm"></head>
+<body>
+    <div id="canvas-container"></div>
+
+    <!-- Load three.js modules first, before WASM -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+
+        // Make three.js available globally for WASM
+        window.THREE = THREE;
+        window.TextGeometry = TextGeometry;
+        window.FontLoader = FontLoader;
+
+        console.log('THREE.js loaded and exposed globally');
+
+        // Load font
+        const loader = new FontLoader();
+        loader.load(
+            'https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json',
+            function(font) {
+                window.loadedFont = font;
+                console.log('Font loaded successfully');
+                window.dispatchEvent(new CustomEvent('fontLoaded'));
+            },
+            undefined,
+            function(err) {
+                console.error('Font loading error:', err);
+            }
+        );
+
+        // Signal that THREE is ready
+        window.threeReady = true;
+        window.dispatchEvent(new CustomEvent('threeReady'));
+    </script>
+
+    <!-- Load WASM after three.js is set up -->
+    
+<script type="module">
+import init, * as bindings from '/three-text-sphere/three-text-sphere-6db8882530f0de85.js';
+const wasm = await init({ module_or_path: '/three-text-sphere/three-text-sphere-6db8882530f0de85_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+</body>
+</html>

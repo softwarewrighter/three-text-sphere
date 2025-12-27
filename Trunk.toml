@@ -1,6 +1,7 @@
 [build]
 target = "index.html"
-dist = "dist"
+dist = "docs"
+public_url = "/three-text-sphere/"
 
 [watch]
 watch = ["src", "index.html"]

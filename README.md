@@ -2,6 +2,8 @@
 
 A Rust/WebAssembly application that renders 3D text orbiting around a sphere, using Yew and three.js. Inspired by the Godot implementation in [godot-text-sphere](https://github.com/softwarewrighter/godot-text-sphere).
 
+**[Live Demo](https://softwarewrighter.github.io/three-text-sphere/?ts=1735259090970)**
+
 ![Screenshot](images/screenshot.png?ts=1734033363716)
 
 ## Features
@@ -16,14 +18,12 @@ A Rust/WebAssembly application that renders 3D text orbiting around a sphere, us
 ### Prerequisites
 
 - Rust toolchain with wasm32 target
-- Trunk (for building)
-- basic-http-server (for testing)
+- Trunk (for building and serving)
 
 ```bash
 # Install dependencies
 rustup target add wasm32-unknown-unknown
 cargo install trunk
-cargo install basic-http-server
 ```
 
 ### Build
@@ -35,7 +35,7 @@ trunk build --release
 ### Run
 
 ```bash
-basic-http-server -a 0.0.0.0:1417 dist/
+trunk serve
 ```
 
 Open http://localhost:1417 in your browser.
@@ -44,17 +44,17 @@ Open http://localhost:1417 in your browser.
 
 ### Project Documentation
 
-- [Architecture](docs/architecture.md) - System design and technology stack
-- [PRD](docs/prd.md) - Product requirements document
-- [Design](docs/design.md) - Technical design details
-- [Plan](docs/plan.md) - Implementation plan and phases
-- [Status](docs/status.md) - Current project status
+- [Architecture](documentation/architecture.md) - System design and technology stack
+- [PRD](documentation/prd.md) - Product requirements document
+- [Design](documentation/design.md) - Technical design details
+- [Plan](documentation/plan.md) - Implementation plan and phases
+- [Status](documentation/status.md) - Current project status
 
 ### Development Guidelines
 
-- [AI Agent Instructions](docs/ai_agent_instructions.md) - Guidelines for AI coding agents
-- [Process](docs/process.md) - Development workflow and pre-commit process
-- [Tools](docs/tools.md) - Recommended development tools
+- [AI Agent Instructions](documentation/ai_agent_instructions.md) - Guidelines for AI coding agents
+- [Process](documentation/process.md) - Development workflow and pre-commit process
+- [Tools](documentation/tools.md) - Recommended development tools
 
 ## Project Structure
 
@@ -67,8 +67,8 @@ three-text-sphere/
   COPYRIGHT           # Copyright notice
   src/
     lib.rs            # WASM entry point and three.js bindings
-  dist/               # Build output (generated)
-  docs/               # Documentation
+  docs/               # Live demo (GitHub Pages)
+  documentation/      # Project documentation
   images/             # Screenshots
 ```
 
